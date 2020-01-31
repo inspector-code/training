@@ -4,8 +4,7 @@ import Header from "./Components/Header/Header";
 import NavBar from "./Components/Navbar/Navbar";
 import Profile from "./Components/Profile/Profile";
 import Dialogs from "./Components/Dialogs/Dialogs";
-import Route from "react-router-dom/es/Route";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 
 function App() {
     return (
