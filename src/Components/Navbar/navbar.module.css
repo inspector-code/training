@@ -12,3 +12,7 @@
 .item a.active {
     color: green;
 }
+
+.friends {
+    display: flex;
+}

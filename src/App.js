@@ -12,7 +12,7 @@ function App(props) {
         <BrowserRouter>
         <div className="app-wrapper">
             <Header/>
-            <NavBar/>
+            <NavBar state={props.state.sidebar}/>
             <div className="app-wrapper-content">
                 <Route path="/dialogs"
                        render={ () => <Dialogs state={props.state.dialogsPage} /> }/>
