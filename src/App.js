@@ -4,12 +4,11 @@ import Header from "./Components/Header/Header";
 import NavBar from "./Components/Navbar/Navbar";
 import Profile from "./Components/Profile/Profile";
 import Dialogs from "./Components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 
 function App(props) {
 
     return (
-        <BrowserRouter>
         <div className="app-wrapper">
             <Header/>
             <NavBar state={props.state.sidebar}/>
@@ -17,10 +16,11 @@ function App(props) {
                 <Route path="/dialogs"
                        render={ () => <Dialogs state={props.state.dialogsPage} /> }/>
                 <Route path="/profile"
-                       render={ () => <Profile state={props.state.profilePage} /> }/>
+                       render={ () => <Profile
+                           state={props.state.profilePage}
+                           addPost={props.addPost} /> }/>
             </div>
         </div>
-        </BrowserRouter>
     );
 }
 
