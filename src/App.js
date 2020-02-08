@@ -14,14 +14,12 @@ function App(props) {
             <div className="app-wrapper-content">
                 <Route path="/dialogs"
                        render={ () => <Dialogs
-                           addMess={props.addMess}
-                           updateNewMessageText={props.updateNewMessageText}
+                           dispatch={props.dispatch}
                            dialogsPage={props.state.dialogsPage}
                        /> }/>
                 <Route path="/profile"
                        render={ () => <Profile
-                           addPost={props.addPost}
-                           updateNewPostText={props.updateNewPostText}
+                           dispatch={props.dispatch}
                            profilePage={props.state.profilePage}
                        /> }/>
             </div>
