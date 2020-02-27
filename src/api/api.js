@@ -43,3 +43,9 @@ export const authAPI = {
     },
 };
 
+export const loginAPI = {
+    login(email, password, rememberMe) {
+        return instance.post(`auth/login`);
+    },
+};
+
