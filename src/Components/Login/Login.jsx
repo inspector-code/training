@@ -1,5 +1,5 @@
 import React from "react";
-import {Field, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 import {createField, Input} from "../Common/FormsControls/FormsControls";
 import {required} from "../../Utils/Validators/validators";
 import {connect} from "react-redux";
@@ -9,30 +9,17 @@ import style from "./../Common/FormsControls/FormsControls.module.css";
 
 const LoginForm = ({handleSubmit, error}) => {
     return (
-            <form onSubmit={handleSubmit}>
-                    {createField('Email', 'email', [required], Input)}
-                    {createField('Password', 'password', [required], Input, {type: "password"})}
-                <div>
-                    <Field placeholder={'Password'}
-                           type={"password"}
-                           validate={[required]}
-                           name={"password"}
-                           component={Input}
-                    />
-                </div>
-                <div>
-                    <Field type={"checkbox"}
-                           name={"rememberMe"}
-                           component={Input}
-                    /> remember me
-                </div>
-                {error && <div className={style.formSummaryError}>
-                    {error}
-                </div>}
-                <div>
-                    <button>Login</button>
-                </div>
-            </form>
+        <form onSubmit={handleSubmit}>
+            {createField('Email', 'email', [required], Input)}
+            {createField('Password', 'password', [required], Input, {type: "password"})}
+            {createField(null, 'rememberMe', null, Input, {type: "checkbox"}, "Remember me")}
+            {error && <div className={style.formSummaryError}>
+                {error}
+            </div>}
+            <div>
+                <button>Login</button>
+            </div>
+        </form>
     )
 };
 
@@ -50,7 +37,7 @@ const Login = (props) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit} />
+            <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     )
 };
