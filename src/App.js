@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import NavBar from "./Components/Navbar/Navbar";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {HashRouter, Route, withRouter} from "react-router-dom";
 import UsersContainer from "./Components/Users/UsersContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginPage from "./Components/Login/Login";
@@ -57,11 +57,11 @@ let AppContainer = compose(
     connect(mapStateToProps, {initializeApp}))(App);
 
 const SamuraiJSApp = (props) => {
-    return <BrowserRouter basename={process.env.PUBLIC_URL}>
+    return <HashRouter basename={process.env.PUBLIC_URL}>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 };
 
 export default SamuraiJSApp;
