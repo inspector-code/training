@@ -47,6 +47,7 @@ export const addPostActionCreator = (post) => ({type: ADD_POST, post});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
+export const savePhotoSuccess = (photos) => ({type: DELETE_POST, photos});
 
 export const getUserProfile = (userId) => async (dispatch) => {
     let response = await profileAPI.getProfile(userId);
@@ -60,6 +61,13 @@ export const getStatus = (userId) => async (dispatch) => {
 
 export const updateStatus = (status) => async (dispatch) => {
     let response = await profileAPI.updateStatus(status);
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status));
+    }
+};
+
+export const savePhoto = (file) => async (dispatch) => {
+    let response = await profileAPI.savePhoto(status);
     if (response.data.resultCode === 0) {
         dispatch(setStatus(status));
     }
