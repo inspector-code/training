@@ -5,8 +5,14 @@
     height: 55px;
 }
 
-.header img {
-    width: 130px;
+.logo {
+    width: 105px;
+}
+
+.ava {
+    border-radius: 50%;
+    width: 37px;
+    margin-right: 10px;
 }
 
 .loginBlock {
@@ -15,4 +21,9 @@
 
 .loginBlock a {
     color: white;
+}
+
+.userInfo {
+    display: flex;
+    align-items: center;
 }

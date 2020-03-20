@@ -4,13 +4,14 @@ import {NavLink} from "react-router-dom";
 import logo from '../../assets/images/296702.png';
 
 const Header = (props) => {
-    debugger;
     return (
         <div className={s.header}>
-            <img src={logo} alt='logo'/>
+            <img src={logo} alt='logo' className={s.logo}/>
             <div className={s.loginBlock}>
                 {props.isAuth
-                    ? <div>{props.login} - <button onClick={props.logout}>Logout</button></div>
+                    ? <div className={s.userInfo}>
+                        {props.ava && <div><img src={props.ava} alt="img" className={s.ava}/></div>}
+                        <div>{props.login} - <button onClick={props.logout}>Logout</button></div></div>
                     : <NavLink to={'/login'}>Login</NavLink>
                 }
             </div>

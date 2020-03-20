@@ -16,6 +16,7 @@ const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsCo
 const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileContainer'));
 
 class App extends React.Component {
+
     catchAllUnhandleErrors = (reason, promise) => {
         alert("Some error occured");
     }
@@ -83,7 +84,7 @@ const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 });
 
-let AppContainer = compose(
+const AppContainer = compose(
     withRouter,
     connect(mapStateToProps, {initializeApp}))(App);
 
