@@ -18,7 +18,7 @@ const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileCo
 class App extends React.Component {
 
     catchAllUnhandleErrors = (reason, promise) => {
-        alert("Some error occured");
+        //alert("Some error occured");
     }
 
     componentDidMount() {

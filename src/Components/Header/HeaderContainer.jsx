@@ -9,6 +9,12 @@ class HeaderContainer extends React.Component {
         this.props.getAuthorizedUserAva(this.props.userId)
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.ava !== prevProps.ava) {
+            this.props.getAuthorizedUserAva(this.props.userId);
+        }
+    }
+
     render() {
         return (
             <Header {...this.props} />

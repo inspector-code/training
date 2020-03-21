@@ -3,6 +3,11 @@
     justify-content: space-between;
     align-items: center;
     height: 55px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.9em;
 }
 
 .logo {
@@ -12,18 +17,27 @@
 .ava {
     border-radius: 50%;
     width: 37px;
-    margin-right: 10px;
-}
-
-.loginBlock {
-    float: right;
+    margin-right: 7px;
+    margin-left: 10px;
 }
 
 .loginBlock a {
     color: white;
+    text-decoration: none;
 }
 
-.userInfo {
+.userInfo, .userInfo div {
     display: flex;
     align-items: center;
+}
+
+.userInfo button {
+    background-color: transparent;
+    border: 0;
+    color: white;
+    cursor: pointer;
+}
+
+.userInfo button:hover, .loginIcon i:hover, .loginIcon a:hover {
+    color: whitesmoke;
 }
