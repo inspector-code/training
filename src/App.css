@@ -5,6 +5,7 @@ header {
     background-color: #1DA1F2;
     margin-bottom: 20px;
     z-index: 100;
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
 }
 
 .container {
@@ -14,13 +15,17 @@ header {
 
 .app-wrapper {
     display: grid;
-    grid-template-columns: 200px 700px;
+    grid-template-columns: 150px 830px;
     grid-gap: 20px;
 }
 
 .navbar {
     position: sticky;
     top: 75px;
+}
+
+main {
+    margin-bottom: 40px;
 }
 
 

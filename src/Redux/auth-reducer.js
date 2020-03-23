@@ -28,8 +28,8 @@ const authReducer = (state = initialState, action) => {
     }
 };
 
-export const setAuthUserData = (userId, email, login, isAuth) => ({
-    type: SET_USER_DATA, payload: {userId, email, login, isAuth}
+export const setAuthUserData = (userId, email, login, isAuth, small) => ({
+    type: SET_USER_DATA, payload: {userId, email, login, isAuth, small}
 });
 
 export const getCaptchaUrlSuccess = (captchaUrl) => ({
@@ -75,7 +75,7 @@ export const getCaptchaUrl = () => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     const response = await authAPI.logout();
         if (response.data.resultCode === 0) {
-            dispatch(setAuthUserData(null, null, null, false));
+            dispatch(setAuthUserData(null, null, null, false, null));
         }
 };
 
