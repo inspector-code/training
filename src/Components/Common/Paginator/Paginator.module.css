@@ -1,13 +1,40 @@
 .paginator {
     margin: 10px;
+    display: flex;
 }
 
 .pageNumber {
-    padding: 2px;
-    border: 1px solid grey;
+    border-top: 1px solid #d7d8db;
+    border-left: 1px solid #d7d8db;
+    border-bottom: 1px solid #d7d8db;
+    cursor: pointer;
+    width: auto;
+    height: 30px;
+    font-size: 0.8em;
+    padding-left: 7px;
+    padding-right: 7px;
+    display: flex;
+    align-items: center;
 }
 
-.pageNumber.selectedPage {
+.pageNumber:last-child {
+    border-right: 1px solid #d7d8db;
+}
+
+.selectedPage {
+    cursor: pointer;
+    width: auto;
+    height: 30px;
+    font-size: 0.85em;
+    padding-left: 7px;
+    padding-right: 7px;
     font-weight: bold;
-    border-color: black;
+    background-color: #418ccb;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.pageNumber:hover {
+    background-color: #f4f2ec;
 }

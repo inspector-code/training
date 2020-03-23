@@ -2,7 +2,7 @@ header {
     position: sticky;
     top: 0;
     width: 100%;
-    background-color: #1DA1F2;
+    background-color: #418ccb;
     margin-bottom: 20px;
     z-index: 100;
     box-shadow: 0 0 3px rgba(0,0,0,0.5);
@@ -24,9 +24,6 @@ header {
     top: 75px;
 }
 
-main {
-    margin-bottom: 40px;
-}
 
 
 
