@@ -18,24 +18,29 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portion
 
     return (
         <div className={styles.paginator}>
-            {portionNumber > 1 &&
-            <button onClick={() => {
-                setPortionNumber(portionNumber - 1)
-            }}> PREV </button>}
-
-            {pages
-                .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-                .map((p) => {
-                    return <div className={(currentPage === p) ? styles.selectedPage : styles.pageNumber}
-                                 key={p}
-                                 onClick={(e) => {
-                                     onPageChanged(p);
-                                 }}>{p}</div>
-                })}
-            {portionCount > portionNumber &&
-            <button onClick={() => {
-                setPortionNumber(portionNumber + 1)
-            }}>NEXT</button>}
+            <div>
+                {portionNumber > 1 && <input className={styles.prevButton} type="image" src={lapa} alt="ОК" onClick={() => {
+                    setPortionNumber(portionNumber - 1)
+                }}/>}
+            </div>
+            <div className={styles.numbersBlock}>
+                {pages
+                    .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                    .map((p) => {
+                        return <div className={(currentPage === p) ? styles.selectedPage : styles.pageNumber}
+                                    key={p}
+                                    onClick={(e) => {
+                                        onPageChanged(p);
+                                    }}>{p}</div>
+                    })}
+            </div>
+            <div>
+                {portionCount > portionNumber &&
+                <input className={styles.nextButton} type="image" src={lapa} alt="ОК" onClick={() => {
+                    setPortionNumber(portionNumber + 1)
+                }}/>
+                }
+            </div>
         </div>
     )
 };

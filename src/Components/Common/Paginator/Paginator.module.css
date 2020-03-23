@@ -1,6 +1,15 @@
 .paginator {
     margin: 10px;
+    height: 35px;
     display: flex;
+    align-items: center;
+}
+
+.numbersBlock {
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .pageNumber {
@@ -37,4 +46,19 @@
 
 .pageNumber:hover {
     background-color: #f4f2ec;
+}
+
+.nextButton {
+    width: 25px;
+    display: flex;
+    align-items: center;
+    outline: none;
+}
+
+.prevButton {
+    width: 25px;
+    display: flex;
+    align-items: center;
+    outline: none;
+    transform: rotate(180deg)
 }
