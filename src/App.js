@@ -44,12 +44,14 @@ class App extends React.Component {
                 </header>
                 <section>
                     <div className={'container'}>
-                        <div className={'app-wrapper'}>
+                        <div className={this.props.auth && 'app-wrapper'}>
+                            {this.props.auth &&
                             <nav>
                                 <div className={'navbar'}>
                                     <NavBar/>
                                 </div>
                             </nav>
+                            }
                             <main>
                                 <Switch>
                                     <Route exact path='/'
@@ -81,7 +83,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    initialized: state.app.initialized
+    initialized: state.app.initialized,
+    auth: state.auth.isAuth,
 });
 
 const AppContainer = compose(
