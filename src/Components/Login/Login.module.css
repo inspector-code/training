@@ -1,0 +1,65 @@
+.formSummaryError {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.loginForm {
+    width: 300px;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    border-radius: 4px;
+    padding: 20px 30px;
+    margin: 25px auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginForm input[name="email"], .loginForm input[name="password"] {
+    width: 100%;
+    border: 0;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.checkboxField {
+    display: flex;
+    font-size: 0.9em;
+    align-items: center;
+}
+
+.buttonsField {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttonsField button {
+    border: 0;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #418CCB;
+    color: white;
+    transition: 0.08s linear;
+}
+
+.buttonsField button:hover {
+    background-color: #5B94D2;
+}
+
+.buttonsField button:active {
+    background-color: #4A76A8;
+}
+
+.loginForm img {
+    width: 75px;
+    opacity: 0.9;
+}
+
+.imgLogin {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 17px;
+}

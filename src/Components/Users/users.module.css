@@ -16,6 +16,10 @@
     border-right: 1px solid #e7e8e9;
 }
 
+.user:last-child, .user:nth-child(15) {
+    border-bottom: 0;
+}
+
 .user {
     width: 50%;
     border-bottom: 1px solid #e7e8e9;

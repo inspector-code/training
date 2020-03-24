@@ -8,8 +8,8 @@
 .numbersBlock {
     display: flex;
     justify-content: center;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .pageNumber {
@@ -24,6 +24,7 @@
     padding-right: 7px;
     display: flex;
     align-items: center;
+    transition: 0.08s linear;
 }
 
 .pageNumber:last-child {
@@ -45,7 +46,7 @@
 }
 
 .pageNumber:hover {
-    background-color: #f4f2ec;
+    background-color: #ddd;
 }
 
 .nextButton {
@@ -53,6 +54,7 @@
     display: flex;
     align-items: center;
     outline: none;
+    transform: rotate(180deg)
 }
 
 .prevButton {
@@ -60,5 +62,16 @@
     display: flex;
     align-items: center;
     outline: none;
-    transform: rotate(180deg)
+}
+
+.prevNextButton:hover {
+    background-color: #ddd;
+}
+
+.prevNextButton:active {
+    background-color: #b1b1b1;
+}
+
+.prevNextButton {
+    border-radius: 50%;
 }

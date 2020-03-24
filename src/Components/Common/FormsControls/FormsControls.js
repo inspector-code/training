@@ -5,10 +5,8 @@ import {Field} from "redux-form";
 const FormControl = ({meta: {touched, error}, children}) => {
     const hasError = touched && error;
     return (
-        <div className={styles.formControl + " " + (hasError ? styles.error : "")}>
-            <div>
-                {children}
-            </div>
+        <div className={styles.formControl}>
+            {children}
             {hasError && <span>{error}</span>}
         </div>
     )
@@ -24,13 +22,23 @@ export const Input = (props) => {
     return (<FormControl {...props}><input {...input} {...restProps}/></FormControl>)
 };
 
+export const Checkbox = (props) => {
+    const {input, meta, child, ...restProps} = props;
+    return (<FormControl {...props}>
+        <label className={styles.container}>Remember cat
+            <input {...input} {...restProps}/>
+            <span className={styles.checkmark}></span>
+        </label>
+    </FormControl>)
+};
+
 export const createField = (placeholder, name, validators, component, props = {}, text = "") => (
-    <div>
+    <>
         <Field placeholder={placeholder}
                validate={validators}
                name={name}
                component={component}
                {...props}
-        />{text}
-    </div>
+        />{text && <div>{text}</div>}
+    </>
 );

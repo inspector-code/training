@@ -12,6 +12,7 @@ let Users = ({currentPage, totalUsersCount, pageSize, onPageChanged, users, ...p
                                       key={u.id}
                                       unfollow={props.unfollow}
                                       follow={props.follow}
+                                      auth={props.auth}
                 />)}
             </div>
             <div className={s.paginatorContainer}>

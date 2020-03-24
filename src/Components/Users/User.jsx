@@ -3,7 +3,7 @@ import s from "./users.module.css";
 import userPhoto from "../../assets/images/user_cat2.png"
 import {NavLink} from "react-router-dom";
 
-let User = ({user, followingInProgress, unfollow, follow}) => {
+let User = ({user, followingInProgress, unfollow, follow, auth}) => {
     return (
         <div className={s.user}>
             <div>
@@ -24,6 +24,7 @@ let User = ({user, followingInProgress, unfollow, follow}) => {
                         <i className="fab fa-telegram fa-lg"></i>
                     </div>
                 </div>
+                {auth &&
                 <div className={s.followButtons}>
                     {user.followed
                         ? <button disabled={followingInProgress === user.id}
@@ -39,6 +40,7 @@ let User = ({user, followingInProgress, unfollow, follow}) => {
                                   className={s.followButton}
                         >Follow</button>}
                 </div>
+                }
             </div>
         </div>
     )

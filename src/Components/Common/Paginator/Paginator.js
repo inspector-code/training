@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styles from "./Paginator.module.css";
-import lapa from "../../../assets/images/lapa.png"
+import button from "../../../assets/images/navigate-before.svg"
 
 let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionSize = 10}) => {
 
@@ -18,8 +18,8 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portion
 
     return (
         <div className={styles.paginator}>
-            <div>
-                {portionNumber > 1 && <input className={styles.prevButton} type="image" src={lapa} alt="ОК" onClick={() => {
+            <div className={styles.prevNextButton}>
+                {portionNumber > 1 && <input className={styles.prevButton} type="image" src={button} alt="ОК" onClick={() => {
                     setPortionNumber(portionNumber - 1)
                 }}/>}
             </div>
@@ -34,9 +34,9 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portion
                                     }}>{p}</div>
                     })}
             </div>
-            <div>
+            <div className={styles.prevNextButton}>
                 {portionCount > portionNumber &&
-                <input className={styles.nextButton} type="image" src={lapa} alt="ОК" onClick={() => {
+                <input className={styles.nextButton} type="image" src={button} alt="ОК" onClick={() => {
                     setPortionNumber(portionNumber + 1)
                 }}/>
                 }

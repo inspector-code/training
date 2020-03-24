@@ -1,18 +1,19 @@
 import React from "react";
 import {reduxForm} from "redux-form";
-import {createField, Input} from "../Common/FormsControls/FormsControls";
+import {Checkbox, createField, Input} from "../Common/FormsControls/FormsControls";
 import {required} from "../../Utils/Validators/validators";
 import {connect} from "react-redux";
 import {login} from "../../Redux/auth-reducer";
 import {Redirect} from "react-router-dom";
-import style from "./../Common/FormsControls/FormsControls.module.css";
+import style from "./Login.module.css";
+import cat_eat from "../../assets/images/cat_eat.png"
 
 const LoginForm = ({handleSubmit, error, captchaUrl}) => {
     return (
         <form onSubmit={handleSubmit}>
             {createField('Email', 'email', [required], Input)}
             {createField('Password', 'password', [required], Input, {type: "password"})}
-            {createField(null, 'rememberMe', null, Input, {type: "checkbox"}, "Remember me")}
+
 
             {captchaUrl && <img src={captchaUrl} alt="captcha"/>}
             {captchaUrl && createField('Symbols from image', 'captcha', [required], Input, {})}
@@ -20,8 +21,13 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) => {
             {error && <div className={style.formSummaryError}>
                 {error}
             </div>}
-            <div>
-                <button>Login</button>
+            <div className={style.buttonsField}>
+                <div className={style.checkboxField}>
+                    {createField(null, 'rememberMe', null, Checkbox, {type: "checkbox"})}
+                </div>
+                <div>
+                    <button>Login</button>
+                </div>
             </div>
         </form>
     )
@@ -40,8 +46,8 @@ const Login = (props) => {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className={style.loginForm}>
+            <div className={style.imgLogin}><img src={cat_eat} alt="cat"/></div>
             <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
         </div>
     )
