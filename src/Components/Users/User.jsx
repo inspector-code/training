@@ -13,10 +13,10 @@ let User = ({user, followingInProgress, unfollow, follow, auth}) => {
                 </NavLink>
             </div>
             <div className={s.userInfo}>
-                <div className={s.userNameAndStatus}>
-                    <div>
-                        <div className={s.userName}>{user.name}</div>
-                        <div className={s.userStatus}>{user.status}</div>
+                <div className={s.userInfoBlock}>
+                    <div className={s.userNameAndStatus}>
+                        <div><NavLink to={'/profile/' + user.id}>{user.name}</NavLink></div>
+                        <div>{user.status}</div>
                     </div>
                     <div className={s.socialNetworks}>
                         <i className="fab fa-facebook fa-lg"></i>

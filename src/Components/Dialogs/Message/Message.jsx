@@ -3,7 +3,7 @@ import s from "../Dialogs.module.css";
 
 const Message = (props) => {
     return (
-        <div className={s.message}>{props.message}</div>
+        <p className={s.fromMe}>{props.message}</p>
     )
 };
 
