@@ -1,7 +1,3 @@
-.mainPhoto {
-    max-width: 200px;
-}
-
 .contact {
     padding-left: 10px;
 }
@@ -14,7 +10,7 @@
 }
 
 .photoNameAndStatus {
-    border-bottom: 1px solid #848484;
+    border-bottom: 1px solid #d7d8db;
     background: url(../../../assets/images/back.png);
     height: 250px;
     display: flex;
@@ -24,8 +20,34 @@
 .mainPhoto {
     display: block;
     border-radius: 50%;
-    width: 500px;
+    width: 220px;
     border: 2px solid white;
     box-shadow: 0 0 3px rgba(0,0,0,0.5);
     margin-left: 40px;
+}
+
+.nameAndStatus {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    margin-left: 20px;
+    width: 350px;
+}
+
+.nameAndStatus div:first-child {
+    font-weight: 700;
+    font-size: 2em;
+    margin-top: 30px;
+    color: #585858;
+
+}
+
+.nameAndStatus div:last-child {
+    color: #848484;
+    line-height: 23px;
+    margin-top: 15px;
+
+
+
 }

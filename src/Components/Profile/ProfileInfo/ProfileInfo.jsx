@@ -28,8 +28,13 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
     return (
         <div className={s.userInfo}>
             <div className={s.photoNameAndStatus}>
-                <div><img src={profile.photos.large || userPhoto} className={s.mainPhoto} alt="large_photo"/></div>
-                <div>s</div>
+                <div>
+                    <img src={profile.photos.large || userPhoto} className={s.mainPhoto} alt="large_photo"/>
+                </div>
+                <div className={s.nameAndStatus}>
+                    <div>{profile.fullName}</div>
+                    <div>{status}</div>
+                </div>
                 {/*{isOwner && <input type={"file"} onChange={mainPhotoSelected}/>}*/}
             </div>
             <div>
