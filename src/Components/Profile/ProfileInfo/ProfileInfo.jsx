@@ -8,16 +8,17 @@ import ProfileDataForm from "./ProfileDataForm";
 const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
 
     let [editMode, setEditMode] = useState(false);
+    let [editPhoto, setEditPhoto] = useState(false);
 
     if (!profile) {
         return <Preloader/>
     }
 
-    // const mainPhotoSelected = (e) => {
-    //     if (e.target.files.length) {
-    //         savePhoto(e.target.files[0]);
-    //     }
-    // };
+    const mainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0]);
+        }
+    };
 
     const onSubmit = (formData) => {
         saveProfile(formData).then(() => {
@@ -25,17 +26,29 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
         })
     };
 
+    const showUploadButton = (value) => {
+        setEditPhoto(value);
+    };
+
     return (
         <div className={s.userInfo}>
             <div className={s.photoNameAndStatus}>
-                <div>
-                    <img src={profile.photos.large || userPhoto} className={s.mainPhoto} alt="large_photo"/>
+                <div onMouseLeave={() => showUploadButton(false)}>
+                    <img onMouseOver={() => showUploadButton(true)} src={profile.photos.large || userPhoto} className={s.mainPhoto}
+                         alt="large_photo"/>
+                    {editPhoto &&
+                    <div className={s.uploadButton}>
+                        <label>
+                            {isOwner && <input type={"file"} onChange={mainPhotoSelected}/>}
+                            <div><i className="fas fa-pen"></i></div>
+                        </label>
+                    </div>
+                    }
                 </div>
                 <div className={s.nameAndStatus}>
                     <div>{profile.fullName}</div>
                     <div>{status}</div>
                 </div>
-                {/*{isOwner && <input type={"file"} onChange={mainPhotoSelected}/>}*/}
             </div>
             <div>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>

@@ -1,4 +1,4 @@
-import preloader from "../../../assets/images/Bean Eater-1s-200px.svg";
+import preloader from "../../../assets/images/cat_preloader.svg";
 import React from "react";
 import s from "./preloader.module.css"
 
