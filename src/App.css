@@ -15,7 +15,7 @@ header {
 
 .app-wrapper {
     display: grid;
-    grid-template-columns: 150px 830px;
+    grid-template-columns: 130px 850px;
     grid-gap: 20px;
 }
 

@@ -13,11 +13,11 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
         return <Preloader/>
     }
 
-    const mainPhotoSelected = (e) => {
-        if (e.target.files.length) {
-            savePhoto(e.target.files[0]);
-        }
-    };
+    // const mainPhotoSelected = (e) => {
+    //     if (e.target.files.length) {
+    //         savePhoto(e.target.files[0]);
+    //     }
+    // };
 
     const onSubmit = (formData) => {
         saveProfile(formData).then(() => {
@@ -26,14 +26,19 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
     };
 
     return (
-        <div>
-            <div className={s.descriptionBlock}>
-                <img src={profile.photos.large || userPhoto} className={s.mainPhoto} alt="large_photo"/>
-                {isOwner && <input type={"file"} onChange={mainPhotoSelected}/>}
+        <div className={s.userInfo}>
+            <div className={s.photoNameAndStatus}>
+                <div><img src={profile.photos.large || userPhoto} className={s.mainPhoto} alt="large_photo"/></div>
+                <div>s</div>
+                {/*{isOwner && <input type={"file"} onChange={mainPhotoSelected}/>}*/}
+            </div>
+            <div>
                 <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 {editMode
                     ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
-                    : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner}/>}
+                    : <ProfileData goToEditMode={() => {
+                        setEditMode(true)
+                    }} profile={profile} isOwner={isOwner}/>}
             </div>
         </div>
     )
@@ -42,7 +47,9 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
 const ProfileData = ({profile, isOwner, goToEditMode}) => {
     return (
         <div>
-            {isOwner && <div><button onClick={goToEditMode}>Edit</button></div>}
+            {isOwner && <div>
+                <button onClick={goToEditMode}>Edit</button>
+            </div>}
             <div><b>Name:</b> {profile.fullName}</div>
             <div><b>About me:</b> {profile.aboutMe}</div>
             <div><b>Looking for a job:</b> {profile.lookingForAJob ? "yes" : "no"}</div>

@@ -1,11 +1,31 @@
-.descriptionBlock {
-    /*padding: 10px;*/
-}
-
 .mainPhoto {
     max-width: 200px;
 }
 
 .contact {
     padding-left: 10px;
+}
+
+.userInfo {
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    background-color: white;
+    border-radius: 2px;
+    width: 100%;
+}
+
+.photoNameAndStatus {
+    border-bottom: 1px solid #848484;
+    background: url(../../../assets/images/back.png);
+    height: 250px;
+    display: flex;
+    align-items: center;
+}
+
+.mainPhoto {
+    display: block;
+    border-radius: 50%;
+    width: 500px;
+    border: 2px solid white;
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    margin-left: 40px;
 }

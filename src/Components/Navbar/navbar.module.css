@@ -1,18 +1,26 @@
 .nav {
-    grid-area: n;
-    background-color: burlywood;
-    padding: 20px;
+
+}
+
+.item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.item div:first-child {
+    color: #799FB4;
+    font-size: 1.2em;
+    width: 25px;
 }
 
 .item a {
-    color: white;
     text-decoration: none;
+    color: #4A76A8;
+    margin-left: 10px;
 }
 
 .item a.active {
-    color: green;
-}
-
-.friends {
-    display: flex;
+    color: #2F516D;
 }

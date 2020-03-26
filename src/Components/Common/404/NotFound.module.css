@@ -1,0 +1,13 @@
+.notFoundBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notFoundBlock div {
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: #979797;
+}
