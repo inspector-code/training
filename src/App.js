@@ -12,6 +12,7 @@ import Preloader from "./Components/Common/Preloader/Preloader";
 import store from "./Redux/redux-store";
 import {withSuspens} from "./hoc/withSuspens";
 import NotFound from "./Components/Common/404/NotFound";
+import SettingsContainer from "./Components/Settings/SettingContainer";
 
 const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsContainer'));
 const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileContainer'));
@@ -66,6 +67,9 @@ class App extends React.Component {
                                     />
                                     <Route path='/users'
                                            render={() => <UsersContainer/>}
+                                    />
+                                    <Route path='/settings'
+                                           render={() => <SettingsContainer/>}
                                     />
                                     <Route path='/login'
                                            render={() => <LoginPage/>}

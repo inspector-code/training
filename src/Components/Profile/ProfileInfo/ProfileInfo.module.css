@@ -51,6 +51,11 @@
 .nameAndStatus div:first-child, .nameAndStatus div:last-child {
     color: white;
     text-shadow: 1px 1px 5px #585858;
+    width: 100%;
+}
+
+.nameAndStatus div:last-child input {
+    width: 100%;
 }
 
 .uploadButton {
@@ -66,11 +71,11 @@
     width: 35px;
 }
 
-.uploadButton:hover {
+.uploadButton:hover, .editStatusField button:hover {
     background: #e3e4e8;
 }
 
-.uploadButton:active {
+.uploadButton:active,.editStatusField button:active {
     background: #cccccc;
 }
 
@@ -88,5 +93,65 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.editStatusField {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.editStatusField button {
+    margin-left: 10px;
+    background: white;
+    border: 0;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7em;
+    outline: none;
+}
+
+.editStatusField input {
+    border: 0;
+    outline: none;
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.socialNetworks {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.socialNetworks i {
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.socialNetworks a {
+    text-decoration: none;
+    color: white;
+    font-size: 2em;
+    text-shadow: 1px 1px 5px #585858;
+}
+
+.socialNetworks i:hover {
+    color: #4A76A8;
+}
+
+.socialNetworks i:active {
+    color: #2F516D;
 }
 

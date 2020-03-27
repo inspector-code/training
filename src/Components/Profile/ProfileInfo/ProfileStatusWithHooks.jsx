@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
+import s from "./ProfileInfo.module.css";
 
 const ProfileStatusWithHooks = (props) => {
 
-    let [editMode, setEditMode] = useState(false);
-    let [status, setStatus] = useState(props.status);
+    const [editMode, setEditMode] = useState(false);
+    const [status, setStatus] = useState(props.status);
+    const [statusButton, hideButton] = useState(false);
 
     useEffect(() => {
         setStatus(props.status);
@@ -23,18 +25,23 @@ const ProfileStatusWithHooks = (props) => {
     };
 
     return (
-        <div>
-            { !editMode &&
-            <div>
-                <span onDoubleClick={activateEditMode}>{props.status || "Введите статус"}</span>
+        <>
+            {!editMode &&
+            <div className={s.editStatusField}
+                 onMouseOver={() => hideButton(true)}
+                 onMouseLeave={() => hideButton(false)}
+            >
+                <span>{props.status || "Введите статус"}</span>
+                {statusButton && <button onClick={activateEditMode}><i className="fas fa-pen"></i></button>}
             </div>
             }
             { editMode &&
-            <div>
-                <input onChange={onStatusChange} autoFocus onBlur={deactivateEditMode} value={status}/>
+            <div className={s.editStatusField}>
+                <input onChange={onStatusChange} autoFocus value={status}/>
+                <button onClick={deactivateEditMode}><i className="fas fa-check"></i></button>
             </div>
             }
-        </div>
+        </>
     )
 };
 
