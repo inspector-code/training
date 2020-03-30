@@ -31,8 +31,8 @@ const ProfileStatusWithHooks = (props) => {
                  onMouseOver={() => hideButton(true)}
                  onMouseLeave={() => hideButton(false)}
             >
-                <span>{props.status || "Введите статус"}</span>
-                {statusButton && <button onClick={activateEditMode}><i className="fas fa-pen"></i></button>}
+                <span>{props.status || "Нет статуса"}</span>
+                {statusButton && props.isOwner && <button onClick={activateEditMode}><i className="fas fa-pen"></i></button>}
             </div>
             }
             { editMode &&

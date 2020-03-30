@@ -65,6 +65,7 @@
 .sendButton {
     color: #BBBBBB;
     transition: 0.08s linear;
+    cursor: pointer;
 }
 
 .sendButton i:hover {

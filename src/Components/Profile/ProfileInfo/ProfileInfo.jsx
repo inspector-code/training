@@ -3,11 +3,9 @@ import s from "./ProfileInfo.module.css";
 import Preloader from "../../Common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/user_cat2.png"
-import ProfileDataForm from "./ProfileDataForm";
 
-const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
+const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
 
-    let [editMode, setEditMode] = useState(false);
     let [editPhoto, setEditPhoto] = useState(false);
 
     if (!profile) {
@@ -20,12 +18,6 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
         }
     };
 
-    const onSubmit = (formData) => {
-        saveProfile(formData).then(() => {
-            setEditMode(false);
-        })
-    };
-
     return (
         <div className={s.userInfo}>
             <div className={s.photoNameAndStatus}>
@@ -33,10 +25,10 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
                     <img onMouseOver={() => setEditPhoto(true)} src={profile.photos.large || userPhoto}
                          className={s.mainPhoto}
                          alt="large_photo"/>
-                    {editPhoto &&
+                    {editPhoto && isOwner &&
                     <div className={s.uploadButton}>
                         <label>
-                            {isOwner && <input type={"file"} onChange={mainPhotoSelected}/>}
+                            <input type={"file"} onChange={mainPhotoSelected}/>
                             <div><i className="fas fa-pen"></i></div>
                         </label>
                     </div>
@@ -44,7 +36,7 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
                 </div>
                 <div className={s.nameAndStatus}>
                     <div>{profile.fullName}</div>
-                    <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                    <ProfileStatusWithHooks status={status} updateStatus={updateStatus} isOwner={isOwner}/>
                 </div>
                 <div className={s.socialNetworks}>
                     <div>
@@ -67,40 +59,24 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
                     </div>
                 </div>
             </div>
-            <div>
-                {editMode
-                    ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
-                    : <ProfileData goToEditMode={() => {
-                        setEditMode(true)
-                    }} profile={profile} isOwner={isOwner}/>}
+            <div className={s.aboutSection}>
+                <div>
+                    <div>About me:</div>
+                    <div>{profile.aboutMe}</div>
+                </div>
+                <div>
+                    <div>Looking for a job:</div>
+                    <div>{profile.lookingForAJob ? "yes" : "no"}</div>
+                </div>
+                {profile.lookingForAJob &&
+                <div>
+                    <div>My professional skills:</div>
+                    <div>{profile.lookingForAJobDescription}</div>
+                </div>
+                }
             </div>
         </div>
     )
-};
-
-const ProfileData = ({profile, isOwner, goToEditMode}) => {
-    return (
-        <div>
-            {isOwner && <div>
-                <button onClick={goToEditMode}>Edit</button>
-            </div>}
-            <div><b>Name:</b> {profile.fullName}</div>
-            <div><b>About me:</b> {profile.aboutMe}</div>
-            <div><b>Looking for a job:</b> {profile.lookingForAJob ? "yes" : "no"}</div>
-            {profile.lookingForAJob &&
-            <div>
-                <b>My professional skills</b>: {profile.lookingForAJobDescription}
-            </div>
-            }
-            <div><b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
-                return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>
-            })}</div>
-        </div>
-    )
-};
-
-const Contact = ({contactTitle, contactValue}) => {
-    return <div className={s.contact}><b>{contactTitle}</b>: {contactValue}</div>
 };
 
 export default ProfileInfo;

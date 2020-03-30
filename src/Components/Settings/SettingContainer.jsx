@@ -4,27 +4,30 @@ import {connect} from "react-redux";
 import {getUserProfile, savePhoto, saveProfile} from "../../Redux/profile-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import Settings from "./Settings";
+import Preloader from "../Common/Preloader/Preloader";
 
-const SettingsContainer = ({profile, saveProfile, getUserProfile, userId}) => {
+const SettingsContainer = ({profile, saveProfile, getUserProfile, userId, saveStatus}) => {
 
     useEffect(() => {
+        if (!profile || profile.userId !== userId) {
             getUserProfile(userId);
-    }, [profile, getUserProfile]);
+        }
+    }, [profile, getUserProfile, userId]);
 
     return (
-        <div>
-            {profile &&
-            <Settings profile={profile}
-                      saveProfile={saveProfile}
-            />
+        <>
+            {profile
+                ? <Settings profile={profile} saveProfile={saveProfile} userId={userId} saveStatus={saveStatus}/>
+                : <Preloader/>
             }
-        </div>
+        </>
     )
 };
 
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     userId: state.auth.userId,
+    saveStatus: state.profilePage.saveStatus,
 });
 
 export default compose(

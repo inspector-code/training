@@ -6,6 +6,7 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 const DELETE_POST = 'DELETE_POST';
 const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
+const SAVE_STATUS = 'SAVE_STATUS';
 
 let initialState = {
     posts: [
@@ -16,6 +17,7 @@ let initialState = {
     ],
     profile: null,
     status: '',
+    saveStatus: false,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -45,6 +47,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profile: {...state.profile, photos: action.photos}
             };
+        case SAVE_STATUS:
+            return {
+                ...state,
+                saveStatus: action.status
+            };
         default:
             return state;
     }
@@ -55,6 +62,7 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos});
+export const saveStatus = (status) => ({type: SAVE_STATUS, status});
 
 export const getUserProfile = (userId) => async (dispatch) => {
     const response = await profileAPI.getProfile(userId);
@@ -89,6 +97,8 @@ export const saveProfile = (profile) => async (dispatch, getState) => {
     const response = await profileAPI.saveProfile(profile);
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId));
+        dispatch(saveStatus(true));
+        setTimeout(() => dispatch(saveStatus(false)), 10000)
     } else {
         dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0]}));
         return Promise.reject(response.data.messages[0]);
