@@ -60,17 +60,19 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
                 </div>
             </div>
             <div className={s.aboutSection}>
-                <div>
-                    <div>About me:</div>
+                {profile.aboutMe &&
+                <div className={s.aboutField}>
+                    <div><i className="far fa-address-card"></i> <span>About me:&nbsp;</span></div>
                     <div>{profile.aboutMe}</div>
                 </div>
-                <div>
-                    <div>Looking for a job:</div>
-                    <div>{profile.lookingForAJob ? "yes" : "no"}</div>
+                }
+                <div className={s.aboutField}>
+                    <div><i className="fas fa-user-tie"></i> <span>Looking for a job:&nbsp;</span></div>
+                    <div>{profile.lookingForAJob ? "Yes" : "No"}</div>
                 </div>
                 {profile.lookingForAJob &&
-                <div>
-                    <div>My professional skills:</div>
+                <div className={s.aboutField}>
+                    <div><i className="fas fa-briefcase"></i> <span>My professional skills:&nbsp;</span></div>
                     <div>{profile.lookingForAJobDescription}</div>
                 </div>
                 }

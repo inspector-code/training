@@ -7,7 +7,7 @@ import {Textarea} from "../../Common/FormsControls/FormsControls";
 
 const MyPosts = (props) => {
     let postsElements = props.posts
-        .map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
+        .map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>).reverse();
 
     let onAddPost = (post) => {
         if (post.newPostText) {
@@ -16,29 +16,29 @@ const MyPosts = (props) => {
     };
 
     return (
-        <div className={s.postsBlock}>
-            <h3>My posts</h3>
-            <AddPostFormRedux onSubmit={onAddPost}/>
+        <>
+            <div className={s.sendPostBlock}>
+                <div className={s.userAva}><img src={props.photo} alt="ava"/></div>
+                <div className={s.postFormBlock}><AddPostFormRedux onSubmit={onAddPost}/></div>
+            </div>
             <div className={s.posts}>
                 {postsElements}
             </div>
-        </div>
+        </>
     );
 };
 
-const maxLength100 = maxLengthCreator(100);
+const maxLength500 = maxLengthCreator(500);
 
 const AddNewPostForm = (props) => {
     return (
         <Form onSubmit={props.handleSubmit}>
-            <div>
+            <div className={s.postForm}>
                 <Field component={Textarea}
                        name="newPostText"
                        placeholder='Enter ur post'
-                       validate={[maxLength100]}/>
-            </div>
-            <div>
-                <button>Add post</button>
+                       validate={[maxLength500]}/>
+                <div><button>Add post</button></div>
             </div>
         </Form>
     )

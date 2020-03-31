@@ -1,7 +1,72 @@
-.postsBlock {
-    padding: 10px;
+.sendPostBlock  {
+    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    background-color: white;
+    border-radius: 2px;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 15px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.posts {
-    margin-top: 10px;
+.userAva {
+    width: 10%;
+}
+
+.userAva img {
+    border-radius: 50%;
+    width: 60px;
+    display: block;
+}
+
+.postFormBlock {
+    width: 90%;
+}
+
+.postForm {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.postForm div:first-child {
+    width: 83%;
+}
+
+.postForm div:last-child {
+    width: 17%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.postForm textarea {
+    display: block;
+    resize: vertical;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 10px 20px;
+    border-radius: 5px;
+    min-height: 60px;
+    outline: none;
+    width: 100%;
+}
+
+.postForm button {
+    display: block;
+    background-color: #418CCB;
+    border: 1px solid #d7d8db;
+    padding: 10px 18px;
+    color: white;
+    outline: none;
+    transition: 0.08s linear;
+}
+
+.postForm button:hover {
+    background-color: #4A76A8;
+}
+
+.postForm button:active {
+    background-color: #2F516D;
 }
