@@ -1,9 +1,9 @@
 import {authAPI, profileAPI, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
-const SET_USER_DATA = 'social-network/auth/SET_USER_DATA';
-const GET_CAPTCHA_URL_SUCCESS = 'social-network/auth/GET_CAPTCHA_URL_SUCCESS';
-const GET_AUTHORIZED_USER_AVA = 'social-network/auth/GET_AUTHORIZED_USER_AVA';
+const SET_USER_DATA = "social-network/auth/SET_USER_DATA";
+const GET_CAPTCHA_URL_SUCCESS = "social-network/auth/GET_CAPTCHA_URL_SUCCESS";
+const GET_AUTHORIZED_USER_AVA = "social-network/auth/GET_AUTHORIZED_USER_AVA";
 
 let initialState = {
     userId: null,

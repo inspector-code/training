@@ -1,5 +1,5 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 import NavBar from "./Components/Navbar/Navbar";
 import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 import UsersContainer from "./Components/Users/UsersContainer";
@@ -14,8 +14,8 @@ import {withSuspens} from "./hoc/withSuspens";
 import NotFound from "./Components/Common/404/NotFound";
 import SettingsContainer from "./Components/Settings/SettingContainer";
 
-const DialogsContainer = React.lazy(() => import('./Components/Dialogs/DialogsContainer'));
-const ProfileContainer = React.lazy(() => import('./Components/Profile/ProfileContainer'));
+const DialogsContainer = React.lazy(() => import("./Components/Dialogs/DialogsContainer"));
+const ProfileContainer = React.lazy(() => import("./Components/Profile/ProfileContainer"));
 
 class App extends React.Component {
 
@@ -40,41 +40,41 @@ class App extends React.Component {
         return (
             <>
                 <header>
-                    <div className={'container'}>
+                    <div className={"container"}>
                         <HeaderContainer/>
                     </div>
                 </header>
                 <section>
-                    <div className={'container'}>
-                        <div className={this.props.auth && 'app-wrapper'}>
+                    <div className={"container"}>
+                        <div className={this.props.auth && "app-wrapper"}>
                             {this.props.auth &&
                             <nav>
-                                <div className={'navbar'}>
+                                <div className={"navbar"}>
                                     <NavBar/>
                                 </div>
                             </nav>
                             }
                             <main>
                                 <Switch>
-                                    <Route exact path='/'
-                                           render={() => <Redirect to={'/profile'}/>}
+                                    <Route exact path="/"
+                                           render={() => <Redirect to={"/profile"}/>}
                                     />
-                                    <Route path='/dialogs'
+                                    <Route path="/dialogs"
                                            render={withSuspens(DialogsContainer)}
                                     />
-                                    <Route path='/profile/:userId?'
+                                    <Route path="/profile/:userId?"
                                            render={withSuspens(ProfileContainer)}
                                     />
-                                    <Route path='/users'
+                                    <Route path="/users"
                                            render={() => <UsersContainer/>}
                                     />
-                                    <Route path='/settings'
+                                    <Route path="/settings"
                                            render={() => <SettingsContainer/>}
                                     />
-                                    <Route path='/login'
+                                    <Route path="/login"
                                            render={() => <LoginPage/>}
                                     />
-                                    <Route path='*'
+                                    <Route path="*"
                                            render={() => <NotFound/>}
                                     />
                                 </Switch>
@@ -96,7 +96,7 @@ const AppContainer = compose(
     withRouter,
     connect(mapStateToProps, {initializeApp}))(App);
 
-const SamuraiJSApp = (props) => {
+const CatNETApp = (props) => {
     return <BrowserRouter>
         <Provider store={store}>
             <AppContainer/>
@@ -104,4 +104,4 @@ const SamuraiJSApp = (props) => {
     </BrowserRouter>
 };
 
-export default SamuraiJSApp;
+export default CatNETApp;

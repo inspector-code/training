@@ -6,7 +6,7 @@ import {
     toggleFollowingProgress,
     requestUsers
 } from "../../Redux/users-reducer";
-import React from "react";
+import React, {useEffect} from "react";
 import Users from "./Users";
 import Preloader from "../Common/Preloader/Preloader";
 import {compose} from "redux";
@@ -21,36 +21,35 @@ import {
 } from "../../Redux/users-selectors";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
-class UsersContainer extends React.Component {
-    componentDidMount() {
-        const {currentPage, pageSize} = this.props;
-        this.props.getUsers(currentPage, pageSize);
-    }
+const UsersContainer = ({currentPage, pageSize, getUsers, isFetching, totalUsersCount,
+                            users, follow, unfollow, followingInProgress, auth}) => {
 
-    onPageChanged = (pageNumber) => {
-        const {pageSize} = this.props;
-        this.props.getUsers(pageNumber, pageSize);
-    }
+    useEffect(() => {
+        getUsers(currentPage, pageSize);
+    }, [getUsers, currentPage, pageSize]);
 
-    render() {
-        return <>
-            {this.props.isFetching ? <Preloader/> :
-                <Users totalUsersCount={this.props.totalUsersCount}
-                       pageSize={this.props.pageSize}
-                       currentPage={this.props.currentPage}
-                       onPageChanged={this.onPageChanged}
-                       users={this.props.users}
-                       follow={this.props.follow}
-                       unfollow={this.props.unfollow}
-                       followingInProgress={this.props.followingInProgress}
-                       auth={this.props.auth}
-                />
-            }
+    const onPageChanged = (pageNumber) => {
+        getUsers(pageNumber, pageSize);
+    };
+
+    return (
+        <>
+            {isFetching && <Preloader/>}
+            <Users totalUsersCount={totalUsersCount}
+                   pageSize={pageSize}
+                   currentPage={currentPage}
+                   onPageChanged={onPageChanged}
+                   users={users}
+                   follow={follow}
+                   unfollow={unfollow}
+                   followingInProgress={followingInProgress}
+                   auth={auth}
+            />
         </>
-    }
+    )
 }
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),

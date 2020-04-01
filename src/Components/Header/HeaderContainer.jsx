@@ -1,26 +1,18 @@
-import React from 'react';
-import Header from "./Header";
-import {connect} from "react-redux";
-import {getAuthorizedUserAva, logout} from "../../Redux/auth-reducer";
+import React, {useEffect} from 'react';
+import Header from './Header';
+import {connect} from 'react-redux';
+import {getAuthorizedUserAva, logout} from '../../Redux/auth-reducer';
 
-class HeaderContainer extends React.Component {
+const HeaderContainer = (props) => {
 
-    componentDidMount() {
-        this.props.getAuthorizedUserAva(this.props.userId)
-    }
+    useEffect(() => {
+        props.getAuthorizedUserAva(props.userId);
+    }, [props]);
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.ava !== prevProps.ava) {
-            this.props.getAuthorizedUserAva(this.props.userId);
-        }
-    }
-
-    render() {
-        return (
-            <Header {...this.props} />
-        );
-    }
-}
+    return (
+        <Header {...props} />
+    );
+};
 
 const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth,

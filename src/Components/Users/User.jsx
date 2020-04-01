@@ -7,7 +7,7 @@ let User = ({user, followingInProgress, unfollow, follow, auth}) => {
     return (
         <div className={s.user}>
             <div>
-                <NavLink to={'/profile/' + user.id}>
+                <NavLink to={"/profile/" + user.id}>
                     <img src={user.photos.large != null ? user.photos.large : userPhoto}
                          className={s.userPhoto} alt="ava"/>
                 </NavLink>
@@ -15,7 +15,7 @@ let User = ({user, followingInProgress, unfollow, follow, auth}) => {
             <div className={s.userInfo}>
                 <div className={s.userInfoBlock}>
                     <div className={s.userNameAndStatus}>
-                        <div><NavLink to={'/profile/' + user.id}>{user.name}</NavLink></div>
+                        <div><NavLink to={"/profile/" + user.id}>{user.name}</NavLink></div>
                         <div>{user.status}</div>
                     </div>
                     <div className={s.socialNetworks}>

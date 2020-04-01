@@ -2,9 +2,9 @@ import * as serviceWorker from './serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import SamuraiJSApp from "./App";
+import CatNETApp from "./App";
 
-ReactDOM.render(<SamuraiJSApp/>, document.getElementById('root'));
+ReactDOM.render(<CatNETApp/>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

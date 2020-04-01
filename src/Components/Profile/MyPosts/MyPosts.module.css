@@ -70,3 +70,7 @@
 .postForm button:active {
     background-color: #2F516D;
 }
+
+.posts {
+    margin-bottom: 50px;
+}

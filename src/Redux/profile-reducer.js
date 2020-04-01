@@ -1,12 +1,12 @@
 import {profileAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 
-const ADD_POST = 'ADD-POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_STATUS = 'SET_STATUS';
-const DELETE_POST = 'DELETE_POST';
-const SAVE_PHOTO_SUCCESS = 'SAVE_PHOTO_SUCCESS';
-const SAVE_STATUS = 'SAVE_STATUS';
+const ADD_POST = "ADD-POST";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_STATUS = "SET_STATUS";
+const DELETE_POST = "DELETE_POST";
+const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
+const SAVE_STATUS = "SAVE_STATUS";
 
 let initialState = {
     posts: [
@@ -16,7 +16,7 @@ let initialState = {
         {id: 4, message: "Maaan, this so funny", likesCount: 1}
     ],
     profile: null,
-    status: '',
+    status: "",
     saveStatus: false,
 };
 
