@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./Paginator.module.css";
 import button from "../../../assets/images/navigate-before.svg"
 
-let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionSize = 10}) => {
+const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionSize = 10}) => {
 
     const pagesCount = Math.ceil(totalItemsCount / pageSize);
 
@@ -17,6 +17,11 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portion
     const rightPortionPageNumber = portionNumber * portionSize;
     const selectFirstPageOfNextPortion = portionNumber * 10 + 1;
     const selectFirstPageOfPrevPortion = selectFirstPageOfNextPortion - 20;
+
+    useEffect(() => {
+        setPortionNumber(Math.ceil(currentPage / 10));
+    }, [currentPage]);
+
 
     return (
         <div className={styles.paginator}>

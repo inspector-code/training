@@ -6,37 +6,33 @@ import {getStatus, getUserProfile, savePhoto, saveProfile, updateStatus} from ".
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
-const ProfileContainer = (props) => {
-
-    const refreshProfile = () => {
-        let userId = props.match.params.userId;
-        if (!userId) {
-            userId = props.authorizedUserId;
-            if (!userId) {
-                props.history.push("/login");
-            }
-        }
-        props.getUserProfile(userId);
-        props.getStatus(userId);
-    };
+const ProfileContainer = ({match, authorizedUserId, history, getUserProfile, getStatus,
+                              profile, status, updateStatus, savePhoto, ...props}) => {
 
     useEffect(() => {
-        refreshProfile();
-        console.log("lif");
-    }, [props.match.params.userId]);
+        let userId = match.params.userId;
+        if (!userId) {
+            userId = authorizedUserId;
+            if (!userId) {
+                history.push("/login");
+            }
+        }
+        getUserProfile(userId);
+        getStatus(userId);
+    }, [match.params.userId, authorizedUserId, history, getUserProfile, getStatus]);
 
         return (
                 <Profile {...props}
-                         isOwner={!props.match.params.userId}
-                         profile={props.profile}
-                         status={props.status}
-                         updateStatus={props.updateStatus}
-                         savePhoto={props.savePhoto}
+                         isOwner={!match.params.userId}
+                         profile={profile}
+                         status={status}
+                         updateStatus={updateStatus}
+                         savePhoto={savePhoto}
                 />
         )
-}
+};
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
