@@ -27,50 +27,51 @@ const App = (props) => {
 
     return (
         <>
-            {!props.initialized && <Preloader/>}
-            <header>
-                <div className={"container"}>
-                    <HeaderContainer/>
-                </div>
-            </header>
-            <section>
-                <div className={"container"}>
-                    <div className={props.auth ? "app-wrapper": null}>
-                        {props.auth &&
-                        <nav>
-                            <div className={"navbar"}>
-                                <NavBar/>
-                            </div>
-                        </nav>
-                        }
-                        <main>
-                            <Switch>
-                                <Route exact path="/"
-                                       render={() => <Redirect to={"/profile"}/>}
-                                />
-                                <Route path="/dialogs"
-                                       render={withSuspens(DialogsContainer)}
-                                />
-                                <Route path="/profile/:userId?"
-                                       render={withSuspens(ProfileContainer)}
-                                />
-                                <Route path="/users"
-                                       render={() => <UsersContainer/>}
-                                />
-                                <Route path="/settings"
-                                       render={() => <SettingsContainer/>}
-                                />
-                                <Route path="/login"
-                                       render={() => <LoginPage/>}
-                                />
-                                <Route path="*"
-                                       render={() => <NotFound/>}
-                                />
-                            </Switch>
-                        </main>
+            {!props.initialized ? <Preloader/> : <>
+                <header>
+                    <div className={"container"}>
+                        <HeaderContainer/>
                     </div>
-                </div>
-            </section>
+                </header>
+                <section>
+                    <div className={"container"}>
+                        <div className={props.auth ? "app-wrapper" : null}>
+                            {props.auth &&
+                            <nav>
+                                <div className={"navbar"}>
+                                    <NavBar/>
+                                </div>
+                            </nav>
+                            }
+                            <main>
+                                <Switch>
+                                    <Route exact path="/"
+                                           render={() => <Redirect to={"/profile"}/>}
+                                    />
+                                    <Route path="/dialogs"
+                                           render={withSuspens(DialogsContainer)}
+                                    />
+                                    <Route path="/profile/:userId?"
+                                           render={withSuspens(ProfileContainer)}
+                                    />
+                                    <Route path="/users"
+                                           render={() => <UsersContainer/>}
+                                    />
+                                    <Route path="/settings"
+                                           render={() => <SettingsContainer/>}
+                                    />
+                                    <Route path="/login"
+                                           render={() => <LoginPage/>}
+                                    />
+                                    <Route path="*"
+                                           render={() => <NotFound/>}
+                                    />
+                                </Switch>
+                            </main>
+                        </div>
+                    </div>
+                </section>
+            </>}
         </>
     );
 };
