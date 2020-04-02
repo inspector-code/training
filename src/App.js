@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./App.css";
 import NavBar from "./Components/Navbar/Navbar";
 import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
@@ -17,75 +17,63 @@ import SettingsContainer from "./Components/Settings/SettingContainer";
 const DialogsContainer = React.lazy(() => import("./Components/Dialogs/DialogsContainer"));
 const ProfileContainer = React.lazy(() => import("./Components/Profile/ProfileContainer"));
 
-class App extends React.Component {
+const App = (props) => {
 
-    catchAllUnhandleErrors = (reason, promise) => {
-        //alert("Some error occured");
-    }
-
-    componentDidMount() {
-        this.props.initializeApp();
-        window.addEventListener("unhandledrejection", this.catchAllUnhandleErrors);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("unhandledrejection", this.catchAllUnhandleErrors);
-    }
-
-    render() {
-        if (!this.props.initialized) {
-            return <Preloader/>
+    useEffect(() => {
+        if (!props.initialized) {
+            props.initializeApp();
         }
+    });
 
-        return (
-            <>
-                <header>
-                    <div className={"container"}>
-                        <HeaderContainer/>
+    return (
+        <>
+            {!props.initialized && <Preloader/>}
+            <header>
+                <div className={"container"}>
+                    <HeaderContainer/>
+                </div>
+            </header>
+            <section>
+                <div className={"container"}>
+                    <div className={props.auth ? "app-wrapper": null}>
+                        {props.auth &&
+                        <nav>
+                            <div className={"navbar"}>
+                                <NavBar/>
+                            </div>
+                        </nav>
+                        }
+                        <main>
+                            <Switch>
+                                <Route exact path="/"
+                                       render={() => <Redirect to={"/profile"}/>}
+                                />
+                                <Route path="/dialogs"
+                                       render={withSuspens(DialogsContainer)}
+                                />
+                                <Route path="/profile/:userId?"
+                                       render={withSuspens(ProfileContainer)}
+                                />
+                                <Route path="/users"
+                                       render={() => <UsersContainer/>}
+                                />
+                                <Route path="/settings"
+                                       render={() => <SettingsContainer/>}
+                                />
+                                <Route path="/login"
+                                       render={() => <LoginPage/>}
+                                />
+                                <Route path="*"
+                                       render={() => <NotFound/>}
+                                />
+                            </Switch>
+                        </main>
                     </div>
-                </header>
-                <section>
-                    <div className={"container"}>
-                        <div className={this.props.auth && "app-wrapper"}>
-                            {this.props.auth &&
-                            <nav>
-                                <div className={"navbar"}>
-                                    <NavBar/>
-                                </div>
-                            </nav>
-                            }
-                            <main>
-                                <Switch>
-                                    <Route exact path="/"
-                                           render={() => <Redirect to={"/profile"}/>}
-                                    />
-                                    <Route path="/dialogs"
-                                           render={withSuspens(DialogsContainer)}
-                                    />
-                                    <Route path="/profile/:userId?"
-                                           render={withSuspens(ProfileContainer)}
-                                    />
-                                    <Route path="/users"
-                                           render={() => <UsersContainer/>}
-                                    />
-                                    <Route path="/settings"
-                                           render={() => <SettingsContainer/>}
-                                    />
-                                    <Route path="/login"
-                                           render={() => <LoginPage/>}
-                                    />
-                                    <Route path="*"
-                                           render={() => <NotFound/>}
-                                    />
-                                </Switch>
-                            </main>
-                        </div>
-                    </div>
-                </section>
-            </>
-        );
-    }
-}
+                </div>
+            </section>
+        </>
+    );
+};
 
 const mapStateToProps = (state) => ({
     initialized: state.app.initialized,

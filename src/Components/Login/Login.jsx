@@ -46,10 +46,16 @@ const Login = (props) => {
     }
 
     return (
-        <div className={style.loginForm}>
-            <div className={style.imgLogin}><img src={cat_eat} alt="cat"/></div>
-            <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
-        </div>
+        <>
+            <div className={style.loginForm}>
+                <div className={style.imgLogin}><img src={cat_eat} alt="cat"/></div>
+                <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
+            </div>
+            <div className={style.author}>
+                <div>by bamboleylo@inspector-code</div>
+                <div>2020</div>
+            </div>
+        </>
     )
 };
 

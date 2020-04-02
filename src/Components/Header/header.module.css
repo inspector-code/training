@@ -40,3 +40,13 @@
 .userInfo button:hover, .loginIcon i:hover, .loginIcon a:hover {
     color: whitesmoke;
 }
+
+.logoBlock img {
+    display: block;
+}
+
+.logoBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
