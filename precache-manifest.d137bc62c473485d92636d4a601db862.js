@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "87c779b7bf68c0963feb0a4567856164",
+    "revision": "45b43f973e82962b36e85674eb62bb67",
     "url": "/training/index.html"
   },
   {
@@ -8,16 +8,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/training/static/css/2.2df29a10.chunk.css"
   },
   {
-    "revision": "8661dc7ebaa1753882f3",
-    "url": "/training/static/css/3.a2f83cda.chunk.css"
+    "revision": "0c1d178314297d936b49",
+    "url": "/training/static/css/3.393dcaac.chunk.css"
   },
   {
-    "revision": "e12ab0b29ba75328d6ad",
-    "url": "/training/static/css/4.af11bacf.chunk.css"
+    "revision": "6416eb342f11c5883100",
+    "url": "/training/static/css/4.12b7a37d.chunk.css"
   },
   {
-    "revision": "27eca0a8193b709c97a6",
-    "url": "/training/static/css/main.f6a44131.chunk.css"
+    "revision": "fb1a6af4325c2abcf943",
+    "url": "/training/static/css/main.a6440ba8.chunk.css"
   },
   {
     "revision": "e88b9bab0c774d21d50c",
@@ -28,28 +28,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/training/static/js/2.5ef92a57.chunk.js.LICENSE"
   },
   {
-    "revision": "8661dc7ebaa1753882f3",
-    "url": "/training/static/js/3.e9c792d2.chunk.js"
+    "revision": "0c1d178314297d936b49",
+    "url": "/training/static/js/3.0c25b642.chunk.js"
   },
   {
-    "revision": "e12ab0b29ba75328d6ad",
-    "url": "/training/static/js/4.d87fa0dd.chunk.js"
+    "revision": "6416eb342f11c5883100",
+    "url": "/training/static/js/4.6a250317.chunk.js"
   },
   {
-    "revision": "27eca0a8193b709c97a6",
-    "url": "/training/static/js/main.bcf21e29.chunk.js"
+    "revision": "fb1a6af4325c2abcf943",
+    "url": "/training/static/js/main.a6939c65.chunk.js"
   },
   {
-    "revision": "73decae67833290118b0",
-    "url": "/training/static/js/runtime-main.d981d307.js"
+    "revision": "0ed9f84e5c393b53a2de",
+    "url": "/training/static/js/runtime-main.62ad7d1a.js"
   },
   {
     "revision": "467f3b929b1cbfccc5d19a61c7f911bc",
     "url": "/training/static/media/296702.467f3b92.png"
   },
   {
-    "revision": "bcb55d0dbd271f0d648762e4a6de4e1a",
-    "url": "/training/static/media/Gear.bcb55d0d.svg"
+    "revision": "d817af5b0ae9a6a76b0109f38d034ab2",
+    "url": "/training/static/media/Gear.d817af5b.svg"
   },
   {
     "revision": "6d93d49ec608b0975c6b2a1a5bd0d844",
