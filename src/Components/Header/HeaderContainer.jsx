@@ -6,7 +6,9 @@ import {getAuthorizedUserAva, logout} from '../../Redux/auth-reducer';
 const HeaderContainer = (props) => {
 
     useEffect(() => {
-        props.getAuthorizedUserAva(props.userId);
+        if (props.profile && props.ava !== props.profile.photos.small) {
+            props.getAuthorizedUserAva(props.userId);
+        }
     }, [props]);
 
     return (
@@ -19,6 +21,7 @@ const mapStateToProps = (state) => ({
     login: state.auth.login,
     ava: state.auth.small,
     userId: state.auth.userId,
+    profile: state.profilePage.profile,
 });
 
 export default connect(mapStateToProps, {logout, getAuthorizedUserAva})(HeaderContainer);
