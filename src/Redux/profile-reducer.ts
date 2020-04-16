@@ -8,19 +8,51 @@ const DELETE_POST = "DELETE_POST";
 const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
 const SAVE_STATUS = "SAVE_STATUS";
 
+type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+type ContactsType = {
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+}
+
+type PhotosType = {
+    small: string | null
+    large: string | null
+}
+
+type ProfileType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ContactsType
+    photos: PhotosType
+}
+
 let initialState = {
     posts: [
         {id: 1, message: "HAHAHA", likesCount: 12},
         {id: 2, message: "Next time", likesCount: 3},
         {id: 3, message: "How a u?", likesCount: 8},
         {id: 4, message: "Maaan, this so funny", likesCount: 1}
-    ],
-    profile: null,
+    ] as Array<PostType>,
+    profile: null as ProfileType | null,
     status: "",
     saveStatus: false,
 };
+export type InitialStateType = typeof initialState;
 
-const profileReducer = (state = initialState, action) => {
+const profileReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case ADD_POST:
             return {
@@ -57,8 +89,15 @@ const profileReducer = (state = initialState, action) => {
     }
 };
 
-export const addPostActionCreator = (post) => ({type: ADD_POST, post});
-export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+type AddPostActionCreatorActionType = {
+    type: typeof ADD_POST
+    post: string
+}
+export const addPostActionCreator = (post: string): AddPostActionCreatorActionType => ({type: ADD_POST, post});
+type SetUserProfileActionType = {
+
+}
+export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({type: SET_STATUS, status});
 export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const savePhotoSuccess = (photos) => ({type: SAVE_PHOTO_SUCCESS, photos});
