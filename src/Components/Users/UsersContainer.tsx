@@ -20,15 +20,37 @@ import {
     getAuthStatus,
 } from "../../Redux/users-selectors";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {UserType} from "../../types/types";
+import {AppStateType} from "../../Redux/redux-store";
 
-const UsersContainer = ({currentPage, pageSize, getUsers, isFetching, totalUsersCount,
+type MapStatePropsType = {
+    currentPage: number
+    pageSize: number
+    isFetching: boolean
+    totalUsersCount: number
+    users: Array<UserType>
+    auth: boolean
+    followingInProgress: null | number
+}
+
+type MapDispatchPropsType = {
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setCurrentPage: () => void
+    toggleFollowingProgress: Array<number>
+    getUsers: (currentPage: number, pageSize: number) => void
+}
+
+type PropsTypes = MapStatePropsType & MapDispatchPropsType;
+
+const UsersContainer: React.FC<PropsTypes> = ({currentPage, pageSize, getUsers, isFetching, totalUsersCount,
                             users, follow, unfollow, followingInProgress, auth}) => {
 
     useEffect(() => {
         getUsers(currentPage, pageSize);
     }, [getUsers, currentPage, pageSize]);
 
-    const onPageChanged = (pageNumber) => {
+    const onPageChanged = (pageNumber: number) => {
         getUsers(pageNumber, pageSize);
     };
 
@@ -47,9 +69,9 @@ const UsersContainer = ({currentPage, pageSize, getUsers, isFetching, totalUsers
             />
         </>
     )
-}
+};
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
