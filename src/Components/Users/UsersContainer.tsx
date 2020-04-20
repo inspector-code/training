@@ -37,7 +37,7 @@ type MapDispatchPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setCurrentPage: () => void
-    toggleFollowingProgress: Array<number>
+    toggleFollowingProgress: null | number
     getUsers: (currentPage: number, pageSize: number) => void
 }
 
