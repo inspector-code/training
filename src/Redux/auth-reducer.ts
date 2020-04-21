@@ -1,4 +1,4 @@
-import {authAPI, profileAPI, securityAPI} from "../api/api";
+import {authAPI, profileAPI, ResultCodeForCaptcha, ResultCodesEnum, securityAPI} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "./redux-store";
@@ -73,22 +73,22 @@ export const getAuthorizedUserAva = (userId: number): ThunkType => async (dispat
 };
 
 export const getAuthUserData = (): ThunkType => async (dispatch) => {
-    const response = await authAPI.me();
-    if (response.data.resultCode === 0) {
-        const {id, email, login, small} = response.data.data;
+    const meData = await authAPI.me();
+    if (meData.resultCode === ResultCodesEnum.Success) {
+        const {id, email, login, small} = meData.data;
         dispatch(setAuthUserData(id, email, login, true, small));
     }
 };
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
-    const response = await authAPI.login(email, password, rememberMe, captcha);
-    if (response.data.resultCode === 0) {
+    const loginData = await authAPI.login(email, password, rememberMe, captcha);
+    if (loginData.resultCode === ResultCodesEnum.Success) {
         dispatch(getAuthUserData());
     } else {
-        if (response.data.resultCode === 10) {
+        if (loginData.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
             dispatch(getCaptchaUrl());
         }
-        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+        let message = loginData.messages.length > 0 ? loginData.messages[0] : "Some error";
         dispatch(stopSubmit("login", {_error: message}));
     }
 };
@@ -101,7 +101,7 @@ export const getCaptchaUrl = (): ThunkType => async (dispatch) => {
 
 export const logout = (): ThunkType => async (dispatch) => {
     const response = await authAPI.logout();
-        if (response.data.resultCode === 0) {
+        if (response.data.resultCode === ResultCodesEnum.Success) {
             dispatch(setAuthUserData(null, null, null, false, null));
         }
 };
