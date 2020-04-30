@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
@@ -21,12 +21,18 @@ const Dialogs = (props) => {
         }
     };
 
+    const scrollDown = React.createRef();
+
+    useEffect(() => {
+        scrollDown.current.scrollBy(0, window.innerHeight);
+    });
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
                 {dialogsElements}
             </div>
-            <div className={s.messages}>
+            <div ref={scrollDown} className={s.messages}>
                 {messagesElements}
             </div>
             <div className={s.messageText}>
