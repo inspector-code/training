@@ -1,7 +1,10 @@
-import {authAPI, profileAPI, ResultCodeForCaptcha, ResultCodesEnum, securityAPI} from "../api/api";
+import {ResultCodeForCaptchaEnum, ResultCodesEnum} from "../api/api";
 import {stopSubmit} from "redux-form";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType} from "./redux-store";
+import {profileAPI} from "../api/profile-api";
+import {authAPI} from "../api/auth-api";
+import {securityAPI} from "../api/security-api";
 
 const SET_USER_DATA = "social-network/auth/SET_USER_DATA";
 const GET_CAPTCHA_URL_SUCCESS = "social-network/auth/GET_CAPTCHA_URL_SUCCESS";
@@ -68,8 +71,8 @@ export const setAuthorizedUserAva = (small: string): SetAuthorizedUserAvaActionT
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>;
 
 export const getAuthorizedUserAva = (userId: number): ThunkType => async (dispatch) => {
-    const response = await profileAPI.getProfile(userId);
-    dispatch(setAuthorizedUserAva(response.data.photos));
+    const data = await profileAPI.getProfile(userId);
+    dispatch(setAuthorizedUserAva(data.photos));
 };
 
 export const getAuthUserData = (): ThunkType => async (dispatch) => {
@@ -85,7 +88,7 @@ export const login = (email: string, password: string, rememberMe: boolean, capt
     if (loginData.resultCode === ResultCodesEnum.Success) {
         dispatch(getAuthUserData());
     } else {
-        if (loginData.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
+        if (loginData.resultCode === ResultCodeForCaptchaEnum.CaptchaIsRequired) {
             dispatch(getCaptchaUrl());
         }
         let message = loginData.messages.length > 0 ? loginData.messages[0] : "Some error";
