@@ -9,7 +9,7 @@ import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./Redux/app-reducer";
 import Preloader from "./Components/Common/Preloader/Preloader";
-import store from "./Redux/redux-store";
+import store, {AppStateType} from "./Redux/redux-store";
 import {withSuspens} from "./hoc/withSuspens";
 import NotFound from "./Components/Common/404/NotFound";
 import SettingsContainer from "./Components/Settings/SettingContainer";
@@ -17,7 +17,15 @@ import SettingsContainer from "./Components/Settings/SettingContainer";
 const DialogsContainer = React.lazy(() => import("./Components/Dialogs/DialogsContainer"));
 const ProfileContainer = React.lazy(() => import("./Components/Profile/ProfileContainer"));
 
-const App = (props) => {
+type MapPropsType = ReturnType<typeof mapStateToProps>
+type DispatchPropsType = {
+    initializeApp: () => void
+}
+
+const SuspendedDialogs = withSuspens(DialogsContainer);
+const SuspendedProfile = withSuspens(ProfileContainer);
+
+const App = (props: MapPropsType & DispatchPropsType) => {
 
     useEffect(() => {
         if (!props.initialized) {
@@ -35,7 +43,7 @@ const App = (props) => {
                 </header>
                 <section>
                     <div className={"container"}>
-                        <div className={props.auth ? "app-wrapper" : null}>
+                        <div className={props.auth ? "app-wrapper" : ""}>
                             {props.auth &&
                             <nav>
                                 <div className={"navbar"}>
@@ -49,10 +57,10 @@ const App = (props) => {
                                            render={() => <Redirect to={"/profile"}/>}
                                     />
                                     <Route path="/dialogs"
-                                           render={withSuspens(DialogsContainer)}
+                                           render={() => <SuspendedDialogs />}
                                     />
                                     <Route path="/profile/:userId?"
-                                           render={withSuspens(ProfileContainer)}
+                                           render={() => <SuspendedProfile />}
                                     />
                                     <Route path="/users"
                                            render={() => <UsersContainer/>}
@@ -76,16 +84,16 @@ const App = (props) => {
     );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized,
     auth: state.auth.isAuth,
 });
 
-const AppContainer = compose(
+const AppContainer = compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {initializeApp}))(App);
 
-const CatNETApp = (props) => {
+const CatNETApp: React.FC = () => {
     return <BrowserRouter>
         <Provider store={store}>
             <AppContainer/>
