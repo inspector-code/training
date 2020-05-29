@@ -1,10 +1,30 @@
-import React, {useState} from "react";
+import React, {useState, ChangeEvent} from "react";
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../Common/Preloader/Preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/user_cat2.png"
+import {ContactsType, ProfileType} from "../../../types/types";
 
-const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
+type PropsType = {
+    profile: {
+        userId: number
+        lookingForAJob: boolean
+        lookingForAJobDescription: string
+        fullName: string
+        contacts: ContactsType
+        photos: {
+            large: string
+            small: string
+        }
+        aboutMe: string
+    }
+    status: string
+    updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: (file: File) => void
+}
+
+const ProfileInfo: React.FC<PropsType> = ({profile, status, updateStatus, isOwner, savePhoto}) => {
 
     let [editPhoto, setEditPhoto] = useState(false);
 
@@ -12,8 +32,8 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto}) => {
         return <Preloader/>
     }
 
-    const mainPhotoSelected = (e) => {
-        if (e.target.files.length) {
+    const mainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.length) {
             savePhoto(e.target.files[0]);
         }
     };

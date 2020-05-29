@@ -24,6 +24,7 @@ export type ProfileType = {
     fullName: string
     contacts: ContactsType
     photos: string
+    aboutMe: string
 }
 export type UserType = {
     id: number

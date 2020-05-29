@@ -4,12 +4,19 @@ import Post from "./Post/Post";
 import {Field, Form, reduxForm} from "redux-form";
 import {maxLengthCreator} from "../../../Utils/Validators/validators";
 import {Textarea} from "../../Common/FormsControls/FormsControls";
+import {PostType} from "../../../types/types";
 
-const MyPosts = (props) => {
+type PropsType = {
+    posts: Array<PostType>
+    photo: string
+    addPost: (newPostText: string) => void
+}
+
+const MyPosts: React.FC<PropsType> = (props) => {
     let postsElements = props.posts
         .map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>).reverse();
 
-    let onAddPost = (post) => {
+    let onAddPost = (post: any) => {
         if (post.newPostText) {
             props.addPost(post.newPostText);
         }
@@ -30,7 +37,7 @@ const MyPosts = (props) => {
 
 const maxLength500 = maxLengthCreator(500);
 
-const AddNewPostForm = (props) => {
+const AddNewPostForm = (props: any) => {
     return (
         <Form onSubmit={props.handleSubmit}>
             <div className={s.postForm}>
